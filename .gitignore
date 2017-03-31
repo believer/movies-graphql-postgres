@@ -1,0 +1,7 @@
+.DS_Store
+*.pgsql
+insertData.sh
+pgfutter
+
+node_modules
+json

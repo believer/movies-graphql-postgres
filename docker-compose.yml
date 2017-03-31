@@ -1,0 +1,9 @@
+db:
+  image: postgres:9.6.2
+  ports:
+    - 5432:5432
+  environment:
+    POSTGRES_USER: api
+    POSTGRES_PASSWORD: movies
+    POSTGRES_DB: movee
+    POSTGRES_INITDB_ARGS: "--encoding=utf8"

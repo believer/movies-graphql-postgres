@@ -1,0 +1,26 @@
+type Movie {
+  actors: [String]
+  backdrop: String
+  countries: [String]
+  directors: [String]
+  genres: [String]
+  id: String
+  languages: [String]
+  composers: [String]
+  title: String
+  production_companies: [String]
+  poster: String
+  release_date: String
+  synopsis: String
+  runtime: Int
+  tagline: String
+  title: String
+  wilhelm: Boolean
+  writers: [String]
+  year: String
+}
+
+extend type Query {
+  # Takes an optional ID that can be either the ID in the database OR an IMDb ID
+  movies(id: String): [Movie]
+}
