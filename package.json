@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "node ./lib/server.js"
+  },
   "dependencies": {
     "cors": "^2.8.3",
     "fs-readfile-promise": "^3.0.0",
