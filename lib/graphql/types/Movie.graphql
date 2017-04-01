@@ -52,6 +52,7 @@ extend type Query {
   feed(userId: Int): [Movie]
   # Takes an optional ID that can be either the ID in the database OR an IMDb ID
   movies(id: String, limit: Int = 50, offset: Int = 0): [Movie]
+  bestForYears(userId: Int!, ranking: Int!): [Movie]
   moviesWithRating(rating: Int!): [Movie]
   person(name: String!, role: PersonType!): [Movie]
 }
