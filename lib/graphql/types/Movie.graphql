@@ -12,15 +12,43 @@ type Movie {
   poster: String
   release_date: String
   synopsis: String
+  rating: Int
   runtime: Int
   tagline: String
   title: String
+  user_email: String
+  user_id: Int
+  view_date: String
   wilhelm: Boolean
   writers: [String]
   year: String
 }
 
+input MovieInput {
+  userId: Int!
+  # IMDb ID or IMDb URL
+  imdbId: String!
+  rating: Int = 0
+  date: String
+  wilhelm: Boolean = false
+}
+
+enum PersonType {
+  actor
+  composer
+  director
+  writer
+}
+
+extend type Mutation {
+  insertMovie(input: MovieInput!): Movie
+}
+
 extend type Query {
+  # Return a feed of all users watches or if provided with an ID only one users feed
+  feed(userId: Int): [Movie]
   # Takes an optional ID that can be either the ID in the database OR an IMDb ID
   movies(id: String): [Movie]
+  moviesWithRating(rating: Int!): [Movie]
+  person(name: String!, role: PersonType!): [Movie]
 }
