@@ -1,5 +1,6 @@
 type Movie {
   actors: [String]
+  average_rating: Float
   backdrop: String
   countries: [String]
   directors: [String]
@@ -17,6 +18,8 @@ type Movie {
   tagline: String
   title: String
   user_email: String
+  users_ratings: [Int]
+  users_viewed: [String]
   user_id: Int
   view_date: String
   wilhelm: Boolean
@@ -48,7 +51,7 @@ extend type Query {
   # Return a feed of all users watches or if provided with an ID only one users feed
   feed(userId: Int): [Movie]
   # Takes an optional ID that can be either the ID in the database OR an IMDb ID
-  movies(id: String): [Movie]
+  movies(id: String, limit: Int = 50, offset: Int = 0): [Movie]
   moviesWithRating(rating: Int!): [Movie]
   person(name: String!, role: PersonType!): [Movie]
 }
