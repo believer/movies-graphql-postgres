@@ -36,6 +36,18 @@ input MovieInput {
   wilhelm: Boolean = false
 }
 
+type ViewDate {
+  date: String,
+  userId: Int
+}
+
+type View {
+  movie_id: Int,
+  title: String,
+  dates: [ViewDate]
+  views_count: Int
+}
+
 enum PersonType {
   actor
   composer
@@ -55,4 +67,5 @@ extend type Query {
   bestForYears(userId: Int!, ranking: Int!): [Movie]
   moviesWithRating(rating: Int!): [Movie]
   person(name: String!, role: PersonType!): [Movie]
+  views(userId: Int): [View]
 }
