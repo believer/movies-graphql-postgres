@@ -27,15 +27,6 @@ type Movie {
   year: String
 }
 
-input MovieInput {
-  userId: Int!
-  # IMDb ID or IMDb URL
-  imdbId: String!
-  rating: Int = 0
-  date: String
-  wilhelm: Boolean = false
-}
-
 type ViewDate {
   date: String,
   userId: Int
@@ -55,8 +46,30 @@ enum PersonType {
   writer
 }
 
+input RatingInput {
+  userId: Int!,
+  # ID in DB
+  movieId: Int!,
+  # New rating
+  rating: Int!
+}
+
+input MovieInput {
+  userId: Int!
+  # IMDb ID or IMDb URL
+  imdbId: String!
+  rating: Int = 0
+  date: String
+  wilhelm: Boolean = false
+}
+
+type UpdatedRating {
+  movie_id: Int
+}
+
 extend type Mutation {
   insertMovie(input: MovieInput!): Movie
+  updateRating(input: RatingInput!): [UpdatedRating]
 }
 
 extend type Query {
