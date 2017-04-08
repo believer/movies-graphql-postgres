@@ -99,12 +99,12 @@ extend type Query {
   # Return a feed of all users watches or if provided with an ID only one users feed
   feed(userId: Int): [Movie]
   # Takes an optional ID that can be either the ID in the database OR an IMDb ID
-  movies(id: Int, limit: Int = 50, offset: Int = 0): [Movie]
+  movies(movieId: Int, limit: Int = 50, offset: Int = 0): [Movie]
   bestForYears(userId: Int!, ranking: Int!): [Movie]
   moviesPerYear(year: String): [CountWithYear]
   moviesWithRating(rating: Int!): [Movie]
   person(name: String!, role: PersonType!): [Movie]
-  ratings(movieId: Int!): [Ratings]
+  ratings(movieId: Int): [Ratings]
   totalByPerson(userId: Int!, role: PersonType!, ranked: Int = 10, name: String): [PersonInMovies]
   totalByRole(userId: Int!, role: PersonType!): Int
   userMoviesPerYear(userId: Int!): [CountWithYear]
