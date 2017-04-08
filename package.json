@@ -17,8 +17,8 @@
     "moment": "^2.18.1",
     "moviedb": "^0.2.8",
     "omdb": "^0.7.0",
+    "pg-promise": "^5.6.4",
     "require-dir": "^0.3.1",
-    "restify": "^4.3.0",
-    "simple-pg": "^1.0.0"
+    "restify": "^4.3.0"
   }
 }
