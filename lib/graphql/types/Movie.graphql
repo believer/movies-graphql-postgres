@@ -84,6 +84,12 @@ type Watches {
   total_views: Int
 }
 
+type Ratings {
+  email: String
+  name: String
+  rating: Int
+}
+
 extend type Mutation {
   insertMovie(input: MovieInput!): Movie
   updateRating(input: RatingInput!): UpdatedRating
@@ -98,9 +104,10 @@ extend type Query {
   moviesPerYear(year: String): [CountWithYear]
   moviesWithRating(rating: Int!): [Movie]
   person(name: String!, role: PersonType!): [Movie]
-  userMoviesPerYear(userId: Int!): [CountWithYear]
+  ratings(movieId: Int!): [Ratings]
   totalByPerson(userId: Int!, role: PersonType!, ranked: Int = 10, name: String): [PersonInMovies]
   totalByRole(userId: Int!, role: PersonType!): Int
+  userMoviesPerYear(userId: Int!): [CountWithYear]
   views(userId: Int): [View]
   watches(userId: Int!): Watches
 }
