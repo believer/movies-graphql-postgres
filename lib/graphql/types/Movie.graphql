@@ -84,6 +84,18 @@ type Watches {
   total_views: Int
 }
 
+type Runtime {
+  days: Int
+  minutes: Int
+  hours: Int
+  years: Float
+}
+
+type RuntimeWithAdjusted {
+  total_with_rewatches: Runtime
+  total: Runtime
+}
+
 type Ratings {
   email: String
   name: String
@@ -108,6 +120,7 @@ extend type Query {
   totalByPerson(userId: Int!, role: PersonType!, ranked: Int = 10, name: String): [PersonInMovies]
   totalByRole(userId: Int!, role: PersonType!): Int
   userMoviesPerYear(userId: Int!): [CountWithYear]
+  userRuntime(userId: Int!): RuntimeWithAdjusted
   views(userId: Int): [View]
   watches(userId: Int!): Watches
 }
