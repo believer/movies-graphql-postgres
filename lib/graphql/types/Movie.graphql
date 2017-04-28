@@ -121,6 +121,6 @@ extend type Query {
   totalByRole(userId: Int!, role: PersonType!): Int
   userMoviesPerYear(userId: Int!): [CountWithYear]
   userRuntime(userId: Int!): RuntimeWithAdjusted
-  views(userId: Int): [View]
+  views(userId: Int, offset: Int = 0, limit: Int = 10): [View]
   watches(userId: Int!): Watches
 }
