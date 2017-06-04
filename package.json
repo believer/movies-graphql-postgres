@@ -16,7 +16,7 @@
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "moviedb": "^0.2.8",
-    "omdb": "^0.7.0",
+    "node-fetch": "^1.7.1",
     "pg-promise": "^5.6.4",
     "require-dir": "^0.3.1",
     "restify": "^4.3.0"
