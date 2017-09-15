@@ -1,11 +1,11 @@
 type Movie {
   actors: [String]
-  average_rating: Float
   backdrop: String
   countries: [String]
   directors: [String]
   genres: [String]
   id: String
+  imdb_id: String
   languages: [String]
   composers: [String]
   title: String
@@ -16,6 +16,7 @@ type Movie {
   runtime: Int
   tagline: String
   title: String
+  tmdb_id: String
   wilhelm: Boolean
   writers: [String]
   year: String
@@ -105,7 +106,7 @@ extend type Query {
   # Return a feed of all users watches or if provided with an ID only one users feed
   feed(userId: Int): [Movie]
   # Takes an optional ID that can be either the ID in the database OR an IMDb ID
-  movies(movieId: Int, limit: Int = 50, offset: Int = 0): [Movie]
+  movies(movieId: String, limit: Int = 50, offset: Int = 0): [Movie]
   bestForYears(userId: Int!, ranking: Int!): [Movie]
   moviesPerYear(year: String): [CountWithYear]
   moviesWithRating(rating: Int!): [Movie]
