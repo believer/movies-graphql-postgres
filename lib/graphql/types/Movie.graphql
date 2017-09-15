@@ -13,28 +13,22 @@ type Movie {
   poster: String
   release_date: String
   synopsis: String
-  rating: Int
   runtime: Int
   tagline: String
   title: String
-  user_email: String
-  users_ratings: [Int]
-  users_viewed: [String]
-  user_id: Int
-  view_date: String
   wilhelm: Boolean
   writers: [String]
   year: String
 }
 
 type ViewDate {
-  date: String,
+  date: String
   userId: Int
 }
 
 type View {
-  movie_id: Int,
-  title: String,
+  movie_id: Int
+  title: String
   dates: [ViewDate]
   views_count: Int
 }
@@ -47,9 +41,9 @@ enum PersonType {
 }
 
 input RatingInput {
-  userId: Int!,
+  userId: Int!
   # ID in DB
-  movieId: Int!,
+  movieId: Int!
   # New rating
   rating: Int!
 }
@@ -117,7 +111,12 @@ extend type Query {
   moviesWithRating(rating: Int!): [Movie]
   person(name: String!, role: PersonType!): [Movie]
   ratings(movieId: Int): [Ratings]
-  totalByPerson(userId: Int!, role: PersonType!, ranked: Int = 10, name: String): [PersonInMovies]
+  totalByPerson(
+    userId: Int!
+    role: PersonType!
+    ranked: Int = 10
+    name: String
+  ): [PersonInMovies]
   totalByRole(userId: Int!, role: PersonType!): Int
   userMoviesPerYear(userId: Int!): [CountWithYear]
   userRuntime(userId: Int!): RuntimeWithAdjusted

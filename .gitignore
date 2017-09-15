@@ -6,3 +6,4 @@ pgfutter
 node_modules
 json
 rethinkdb*
+*.db
