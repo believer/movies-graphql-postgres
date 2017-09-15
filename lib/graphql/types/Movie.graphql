@@ -104,7 +104,7 @@ extend type Mutation {
 
 extend type Query {
   # Return a feed of all users watches or if provided with an ID only one users feed
-  feed(userId: Int): [Movie]
+  feed(userId: Int, limit: Int = 50, offset: Int = 0): [Movie]
   # Takes an optional ID that can be either the ID in the database OR an IMDb ID
   movies(movieId: String, limit: Int = 50, offset: Int = 0): [Movie]
   bestForYears(userId: Int!, ranking: Int!): [Movie]
