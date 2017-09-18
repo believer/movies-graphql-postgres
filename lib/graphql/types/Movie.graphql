@@ -44,7 +44,7 @@ enum PersonType {
 input RatingInput {
   userId: Int!
   # ID in DB
-  movieId: Int!
+  movieId: String!
   # New rating
   rating: Int!
 }
@@ -99,7 +99,7 @@ type Ratings {
 
 extend type Mutation {
   insertMovie(input: MovieInput!): Movie
-  updateRating(input: RatingInput!): UpdatedRating
+  updateRating(input: RatingInput!): Movie
 }
 
 extend type Query {
