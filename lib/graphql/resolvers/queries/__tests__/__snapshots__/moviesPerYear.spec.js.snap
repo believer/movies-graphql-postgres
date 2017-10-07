@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`queries/moviesPerYear should get total movies for a specific year 1`] = `
+"
+    SELECT
+      extract(year from m.release_date) as year,
+      COUNT(extract(year from m.release_date))
+    FROM movies as m
+    WHERE m.release_date IS NOT NULL AND year = 2017
+    GROUP by 1
+    ORDER BY year DESC
+  "
+`;
+
+exports[`queries/moviesPerYear should get total movies per year 1`] = `
+"
+    SELECT
+      extract(year from m.release_date) as year,
+      COUNT(extract(year from m.release_date))
+    FROM movies as m
+    WHERE m.release_date IS NOT NULL
+    GROUP by 1
+    ORDER BY year DESC
+  "
+`;
