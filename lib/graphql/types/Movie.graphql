@@ -1,4 +1,4 @@
-type Movie {
+interface Movie {
   actors: [String]
   backdrop: String
   countries: [String]
@@ -17,6 +17,31 @@ type Movie {
   tagline: String
   title: String
   tmdb_id: String
+  wilhelm: Boolean
+  writers: [String]
+  year: String
+}
+
+type MovieWithUser implements Movie {
+  actors: [String]
+  backdrop: String
+  countries: [String]
+  directors: [String]
+  genres: [String]
+  id: String
+  imdb_id: String
+  languages: [String]
+  composers: [String]
+  title: String
+  production_companies: [String]
+  poster: String
+  release_date: String
+  synopsis: String
+  runtime: Int
+  tagline: String
+  title: String
+  tmdb_id: String
+  user: User
   wilhelm: Boolean
   writers: [String]
   year: String
@@ -104,7 +129,7 @@ extend type Mutation {
 
 extend type Query {
   # Return a feed of all users watches or if provided with an ID only one users feed
-  feed(userId: Int, limit: Int = 50, offset: Int = 0): [Movie]
+  feed(userId: Int, limit: Int = 50, offset: Int = 0): [MovieWithUser]
   # Takes an required ID that can be either the ID in the database OR an IMDb ID
   movie(id: String!): Movie
   # Takes an optional ID that can be either the ID in the database OR an IMDb ID
