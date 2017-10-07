@@ -1,10 +1,11 @@
 {
   "name": "movies-db",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./lib/server.js",
   "license": "MIT",
   "scripts": {
-    "start": "node ./lib/server.js"
+    "start": "node ./lib/server.js",
+    "test": "jest"
   },
   "dependencies": {
     "cors": "^2.8.3",
@@ -20,5 +21,8 @@
     "pg-promise": "^6.7.1",
     "require-dir": "^0.3.1",
     "restify": "^6.0.0"
+  },
+  "devDependencies": {
+    "jest": "^21.2.1"
   }
 }
