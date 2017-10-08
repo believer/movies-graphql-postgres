@@ -1,7 +1,7 @@
-const { db } = require('../../../adapters/db')
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-module.exports = async (_, { userId }) => {
-  const sql = `
+exports[`queries/userRuntime should get how many movies a for a specific role 1`] = `
+"
     SELECT
       all_views.minutes,
       all_views.minutes / 60 AS hours,
@@ -11,7 +11,7 @@ module.exports = async (_, { userId }) => {
       SELECT SUM(m.runtime) as minutes
       FROM views AS v 
       INNER JOIN movies AS m ON m.id = v.movie_id 
-      WHERE v.user_id = ${userId}
+      WHERE v.user_id = 1
     ) AS all_views;
 
     SELECT
@@ -27,19 +27,8 @@ module.exports = async (_, { userId }) => {
           m.runtime 
         FROM views AS V 
         INNER JOIN movies AS m ON m.id = v.movie_id 
-        WHERE v.user_id = ${userId}
+        WHERE v.user_id = 1
       ) as unique_views
     ) AS all_unique_views;
-  `
-
-  try {
-    const [total_with_rewatches, total] = await db.query(sql)
-
-    return {
-      total_with_rewatches,
-      total
-    }
-  } catch (e) {
-    throw new Error(e)
-  }
-}
+  "
+`;

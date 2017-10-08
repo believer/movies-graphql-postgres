@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`queries/views should get views 1`] = `
+"
+    SELECT
+        seen.id as movie_id,
+        seen.title,
+        json_agg(json_build_object('date', seen.view_date, 'userId', seen.user_id)) as dates,
+        COUNT(seen.view_date) as views_count
+    FROM (
+      SELECT 
+        m.id,
+        m.title,
+        v.view_date,
+        v.user_id
+      FROM 
+          movies AS m
+          INNER JOIN views AS v ON v.movie_id = m.id
+      
+      ORDER BY m.id, v.view_date DESC
+    ) as seen
+    GROUP BY id, title
+    ORDER BY views_count DESC, title ASC
+    OFFSET 0
+    LIMIT 10
+  "
+`;
+
+exports[`queries/views should get views a specific user 1`] = `
+"
+    SELECT
+        seen.id as movie_id,
+        seen.title,
+        json_agg(json_build_object('date', seen.view_date, 'userId', seen.user_id)) as dates,
+        COUNT(seen.view_date) as views_count
+    FROM (
+      SELECT 
+        m.id,
+        m.title,
+        v.view_date,
+        v.user_id
+      FROM 
+          movies AS m
+          INNER JOIN views AS v ON v.movie_id = m.id
+      WHERE v.user_id = 1
+      ORDER BY m.id, v.view_date DESC
+    ) as seen
+    GROUP BY id, title
+    ORDER BY views_count DESC, title ASC
+    OFFSET 0
+    LIMIT 10
+  "
+`;

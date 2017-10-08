@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`queries/totalByPerson should get how many movies actors are in sorted on ranking 1`] = `
+"
+    SELECT * FROM (
+      SELECT 
+        people.name,
+        people.number_of_movies,
+        row_number() OVER (ORDER BY people.number_of_movies DESC) as ranking
+      FROM 
+        (
+          SELECT 
+            p.name,
+            COUNT(p.name) as number_of_movies
+          FROM 
+            views AS v 
+            INNER JOIN movies AS m ON m.id = v.movie_id 
+            INNER JOIN cast_and_crew AS cac ON cac.movie_id = m.id 
+            INNER JOIN people AS p ON cac.person_id = p.id 
+          WHERE 
+            v.user_id = 1
+            AND cac.role_id = 2
+          GROUP BY 1
+        ) as people
+    ) as ranked_people
+    WHERE ranked_people.ranking <= $1
+  "
+`;
+
+exports[`queries/totalByPerson should get number of movies for a specific name 1`] = `
+"
+    SELECT * FROM (
+      SELECT 
+        people.name,
+        people.number_of_movies,
+        row_number() OVER (ORDER BY people.number_of_movies DESC) as ranking
+      FROM 
+        (
+          SELECT 
+            p.name,
+            COUNT(p.name) as number_of_movies
+          FROM 
+            views AS v 
+            INNER JOIN movies AS m ON m.id = v.movie_id 
+            INNER JOIN cast_and_crew AS cac ON cac.movie_id = m.id 
+            INNER JOIN people AS p ON cac.person_id = p.id 
+          WHERE 
+            v.user_id = 1
+            AND cac.role_id = 2
+          GROUP BY 1
+        ) as people
+    ) as ranked_people
+    WHERE ranked_people.name = $1
+  "
+`;

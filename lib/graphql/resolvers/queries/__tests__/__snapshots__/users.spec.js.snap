@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`queries/users should get a specific user 1`] = `
+"
+    SELECT name, email, id FROM users
+    WHERE id = 1
+  "
+`;
+
+exports[`queries/users should get users 1`] = `
+"
+    SELECT name, email, id FROM users
+    
+  "
+`;

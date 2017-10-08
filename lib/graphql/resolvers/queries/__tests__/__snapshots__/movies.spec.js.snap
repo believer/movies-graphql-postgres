@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`queries/movies should query for all movies 1`] = `
+"
+    SELECT 
+      m.*, 
+      
+  img.poster, 
+  img.backdrop,
+  a.actors, 
+  d.directors,
+  co.composers, 
+  w.writers,
+  g.genres, 
+  c.countries, 
+  l.languages, 
+  pc.production_companies
+
+    FROM 
+      (
+        SELECT *
+        FROM movies
+        OFFSET 0
+        LIMIT 10
+      ) as m, 
+      
+  LATERAL (
+    SELECT * FROM images WHERE movie_id = m.id
+  ) as img,
+  
+    LATERAL (
+      SELECT 
+        ARRAY (
+          SELECT 
+            trim(p.name)
+          FROM 
+            movie_genres AS comb 
+            INNER JOIN genres AS p ON p.id = comb.genre_id
+          WHERE 
+            comb.movie_id = m.id
+        ) as genres
+    ) as g 
+  ,
+  
+    LATERAL (
+      SELECT 
+        ARRAY (
+          SELECT 
+            trim(p.name)
+          FROM 
+            movie_countries AS comb 
+            INNER JOIN countries AS p ON p.id = comb.country_id
+          WHERE 
+            comb.movie_id = m.id
+        ) as countries
+    ) as c 
+  ,
+  
+    LATERAL (
+      SELECT 
+        ARRAY (
+          SELECT 
+            trim(p.name)
+          FROM 
+            movie_languages AS comb 
+            INNER JOIN languages AS p ON p.id = comb.language_id
+          WHERE 
+            comb.movie_id = m.id
+        ) as languages
+    ) as l 
+  ,
+  
+    LATERAL (
+      SELECT 
+        ARRAY (
+          SELECT 
+            trim(p.name)
+          FROM 
+            movie_production_companies AS comb 
+            INNER JOIN production_companies AS p ON p.id = comb.production_company_id
+          WHERE 
+            comb.movie_id = m.id
+        ) as production_companies
+    ) as pc 
+  ,
+  
+    LATERAL (
+      SELECT 
+        ARRAY (
+          SELECT 
+            trim(p.name) 
+          FROM 
+            cast_and_crew AS cac 
+            INNER JOIN people AS p ON p.id = cac.person_id 
+          WHERE 
+            cac.movie_id = m.id 
+            AND cac.role_id = 1
+        ) as directors
+    ) as d
+  ,
+  
+    LATERAL (
+      SELECT 
+        ARRAY (
+          SELECT 
+            trim(p.name) 
+          FROM 
+            cast_and_crew AS cac 
+            INNER JOIN people AS p ON p.id = cac.person_id 
+          WHERE 
+            cac.movie_id = m.id 
+            AND cac.role_id = 2
+        ) as actors
+    ) as a
+  ,
+  
+    LATERAL (
+      SELECT 
+        ARRAY (
+          SELECT 
+            trim(p.name) 
+          FROM 
+            cast_and_crew AS cac 
+            INNER JOIN people AS p ON p.id = cac.person_id 
+          WHERE 
+            cac.movie_id = m.id 
+            AND cac.role_id = 3
+        ) as writers
+    ) as w
+  ,
+  
+    LATERAL (
+      SELECT 
+        ARRAY (
+          SELECT 
+            trim(p.name) 
+          FROM 
+            cast_and_crew AS cac 
+            INNER JOIN people AS p ON p.id = cac.person_id 
+          WHERE 
+            cac.movie_id = m.id 
+            AND cac.role_id = 4
+        ) as composers
+    ) as co
+  
+
+  "
+`;

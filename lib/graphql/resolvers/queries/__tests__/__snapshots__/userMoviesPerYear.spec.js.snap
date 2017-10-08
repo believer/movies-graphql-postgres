@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`queries/userMoviesPerYear should get how many movies a user has seen per year 1`] = `
+"
+    SELECT
+      extract(year from v.view_date) as year,
+      COUNT(extract(year from v.view_date))
+    FROM views as v 
+    WHERE v.user_id = 1
+    GROUP by 1
+    ORDER BY year DESC
+  "
+`;
