@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#getCrew should sort crew members correctly 1`] = `
+Object {
+  "director": Array [
+    "Darren Aronofsky",
+  ],
+  "music": Array [
+    "Clint Mansell",
+    "Clint Mansell",
+  ],
+  "writer": Array [
+    "Hubert Selby Jr.",
+    "Hubert Selby Jr.",
+    "Darren Aronofsky",
+  ],
+}
+`;
