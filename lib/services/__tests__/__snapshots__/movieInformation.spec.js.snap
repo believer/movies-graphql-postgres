@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#movieInformation should pick selected props from movie 1`] = `
+Object {
+  "backdrop_path": "/fCayJrkfRaCRCTh8GqN30f8oyQF.jpg",
+  "genres": Array [
+    Object {
+      "id": 18,
+      "name": "Drama",
+    },
+  ],
+  "id": 550,
+  "imdb_id": "tt0137523",
+  "original_title": "Fight Club",
+  "overview": "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \\"fight clubs\\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.",
+  "poster_path": null,
+  "production_companies": Array [
+    Object {
+      "id": 25,
+      "name": "20th Century Fox",
+    },
+  ],
+  "release_date": "1999-10-12",
+  "runtime": 139,
+  "spoken_languages": Array [
+    Object {
+      "iso_639_1": "en",
+      "name": "English",
+    },
+  ],
+  "tagline": "How much can you know about yourself if you've never been in a fight?",
+}
+`;

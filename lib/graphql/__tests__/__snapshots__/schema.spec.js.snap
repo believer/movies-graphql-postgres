@@ -1,10 +1,15 @@
-const { makeExecutableSchema } = require('graphql-tools')
-const gql = require('graphql-tag')
-const reqdir = require('require-dir')
-const Mutation = reqdir('./resolvers/mutations')
-const Query = reqdir('./resolvers/queries')
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-const typeDefs = gql`
+exports[`#schema should set resolvers 1`] = `
+Object {
+  "Mutation": "./resolvers/mutations",
+  "Query": "./resolvers/queries",
+}
+`;
+
+exports[`#schema should set type definitions 1`] = `
+Array [
+  "
   interface MovieInterface {
     actors: [String]
     backdrop: String
@@ -188,14 +193,6 @@ const typeDefs = gql`
     views(userId: Int, offset: Int = 0, limit: Int = 10): [View]
     watches(userId: Int!): Watches
   }
-`
-
-const resolvers = {
-  Mutation,
-  Query
-}
-
-module.exports = makeExecutableSchema({
-  typeDefs,
-  resolvers
-})
+",
+]
+`;

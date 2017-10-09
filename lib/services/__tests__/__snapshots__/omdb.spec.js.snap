@@ -1,0 +1,235 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#omdb should add extra meta data 1`] = `
+Object {
+  "added": 1507536210,
+  "awards": Array [
+    "Nominated for 1 Oscar. Another 10 wins & 32 nominations.",
+  ],
+  "cast": Array [
+    "Edward Norton",
+    "Brad Pitt",
+  ],
+  "countries": Array [
+    "USA",
+    "Germany",
+  ],
+  "director": Array [],
+  "genres": Array [
+    "Drama",
+  ],
+  "ids": Object {
+    "imdb": "tt0137523",
+    "tmdb": "550",
+  },
+  "images": Object {
+    "backdrop": "/fCayJrkfRaCRCTh8GqN30f8oyQF.jpg",
+    "poster": null,
+  },
+  "languages": Array [
+    "English",
+  ],
+  "music": Array [],
+  "overview": "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground fight clubs forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.",
+  "production_companies": Array [
+    "20th Century Fox",
+  ],
+  "production_countries": Array [
+    Object {
+      "iso_3166_1": "US",
+      "name": "United States of America",
+    },
+  ],
+  "ratings": Object {
+    "imdb": Object {
+      "rating": "8.8",
+      "votes": "1,490,021",
+    },
+    "metacritic": Object {
+      "rating": "66",
+    },
+    "tomatoes": Object {},
+  },
+  "release_date": "1999-10-12",
+  "runtime": 139,
+  "tagline": "How much can you know about yourself if you've never been in a fight?",
+  "title": "Fight Club",
+  "writer": Array [
+    "Jim Uhls",
+  ],
+  "year": "1999",
+}
+`;
+
+exports[`#omdb should set cast if not already set 1`] = `
+Object {
+  "added": 1507536210,
+  "awards": Array [],
+  "cast": Array [
+    "Edward Norton",
+    "Brad Pitt",
+    "Meat Loaf",
+    "Zach Grenier",
+  ],
+  "countries": Array [],
+  "director": Array [],
+  "genres": Array [
+    "Drama",
+  ],
+  "ids": Object {
+    "imdb": "tt0137523",
+    "tmdb": "550",
+  },
+  "images": Object {
+    "backdrop": "/fCayJrkfRaCRCTh8GqN30f8oyQF.jpg",
+    "poster": null,
+  },
+  "languages": Array [
+    "English",
+  ],
+  "music": Array [],
+  "overview": "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground fight clubs forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.",
+  "production_companies": Array [
+    "20th Century Fox",
+  ],
+  "production_countries": Array [
+    Object {
+      "iso_3166_1": "US",
+      "name": "United States of America",
+    },
+  ],
+  "ratings": Object {
+    "imdb": Object {
+      "rating": undefined,
+      "votes": undefined,
+    },
+    "metacritic": Object {
+      "rating": Object {},
+    },
+    "tomatoes": Object {},
+  },
+  "release_date": "1999-10-12",
+  "runtime": 139,
+  "tagline": "How much can you know about yourself if you've never been in a fight?",
+  "title": "Fight Club",
+  "writer": Array [
+    "Jim Uhls",
+  ],
+  "year": "1999",
+}
+`;
+
+exports[`#omdb should set director if not already set 1`] = `
+Object {
+  "added": 1507536210,
+  "awards": Array [],
+  "cast": Array [
+    "Edward Norton",
+    "Brad Pitt",
+  ],
+  "countries": Array [],
+  "director": Array [
+    "David Fincher",
+  ],
+  "genres": Array [
+    "Drama",
+  ],
+  "ids": Object {
+    "imdb": "tt0137523",
+    "tmdb": "550",
+  },
+  "images": Object {
+    "backdrop": "/fCayJrkfRaCRCTh8GqN30f8oyQF.jpg",
+    "poster": null,
+  },
+  "languages": Array [
+    "English",
+  ],
+  "music": Array [],
+  "overview": "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground fight clubs forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.",
+  "production_companies": Array [
+    "20th Century Fox",
+  ],
+  "production_countries": Array [
+    Object {
+      "iso_3166_1": "US",
+      "name": "United States of America",
+    },
+  ],
+  "ratings": Object {
+    "imdb": Object {
+      "rating": undefined,
+      "votes": undefined,
+    },
+    "metacritic": Object {
+      "rating": Object {},
+    },
+    "tomatoes": Object {},
+  },
+  "release_date": "1999-10-12",
+  "runtime": 139,
+  "tagline": "How much can you know about yourself if you've never been in a fight?",
+  "title": "Fight Club",
+  "writer": Array [
+    "Jim Uhls",
+  ],
+  "year": "1999",
+}
+`;
+
+exports[`#omdb should set writer if not already set 1`] = `
+Object {
+  "added": 1507536210,
+  "awards": Array [],
+  "cast": Array [
+    "Edward Norton",
+    "Brad Pitt",
+  ],
+  "countries": Array [],
+  "director": Array [],
+  "genres": Array [
+    "Drama",
+  ],
+  "ids": Object {
+    "imdb": "tt0137523",
+    "tmdb": "550",
+  },
+  "images": Object {
+    "backdrop": "/fCayJrkfRaCRCTh8GqN30f8oyQF.jpg",
+    "poster": null,
+  },
+  "languages": Array [
+    "English",
+  ],
+  "music": Array [],
+  "overview": "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground fight clubs forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.",
+  "production_companies": Array [
+    "20th Century Fox",
+  ],
+  "production_countries": Array [
+    Object {
+      "iso_3166_1": "US",
+      "name": "United States of America",
+    },
+  ],
+  "ratings": Object {
+    "imdb": Object {
+      "rating": undefined,
+      "votes": undefined,
+    },
+    "metacritic": Object {
+      "rating": Object {},
+    },
+    "tomatoes": Object {},
+  },
+  "release_date": "1999-10-12",
+  "runtime": 139,
+  "tagline": "How much can you know about yourself if you've never been in a fight?",
+  "title": "Fight Club",
+  "writer": Array [
+    "Chuck Palahniuk",
+    "Jim Uhls",
+  ],
+  "year": "1999",
+}
+`;

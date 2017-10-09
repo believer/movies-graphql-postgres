@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mutations/insertMovie should create a column set for the movie 1`] = `
+Array [
+  Array [
+    "imdb_id",
+    "release_date",
+    "runtime",
+    "synopsis",
+    "tagline",
+    "title",
+    "tmdb_id",
+    "year",
+    "wilhelm",
+  ],
+  Object {
+    "table": "movies",
+  },
+]
+`;
+
+exports[`mutations/insertMovie should create an insert statement 1`] = `
+Array [
+  Object {
+    "imdb_id": "tt0137523",
+    "release_date": "1999-10-12",
+    "runtime": 139,
+    "synopsis": "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground fight clubs forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.",
+    "tagline": "How much can you know about yourself if you've never been in a fight?",
+    "title": "Fight Club",
+    "tmdb_id": "550",
+    "wilhelm": true,
+    "year": "1999",
+  },
+  "columns",
+]
+`;
