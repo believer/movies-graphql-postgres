@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node ./lib/server.js",
     "test": "jest",
+    "lint": "eslint ./lib",
     "coverage": "jest --coverage",
     "migrate": "knex migrate:latest"
   },
@@ -28,6 +29,8 @@
     "require-dir": "^0.3.1"
   },
   "devDependencies": {
+    "babel-eslint": "^8.0.1",
+    "eslint": "^4.9.0",
     "jest": "^21.2.1",
     "mockdate": "^2.0.2"
   },
