@@ -4,8 +4,11 @@ exports[`queries/ratings should get ratings for a movie 1`] = `
 "
     SELECT
       r.rating,
-      u.name,
-      u.email 
+      jsonb_build_object(
+        'name', u.name,
+        'email', u.email,
+        'id', u.id
+      ) as user
     FROM 
       ratings AS r 
       INNER JOIN users AS u ON u.id = r.user_id
