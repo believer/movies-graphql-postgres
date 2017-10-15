@@ -8,7 +8,7 @@
     "node": true
   },
   "rules": {
-    "comma-dangle": ["error", "always"],
+    "comma-dangle": ["error", "always-multiline"],
     "object-curly-spacing": ["error", "always"],
     "no-var": 2,
     "no-unused-vars": 2,
