@@ -2,8 +2,9 @@
 
 exports[`mutations/login should get a specific user 1`] = `"SELECT * FROM users WHERE email = 'batman@waynecorp.org'"`;
 
-exports[`mutations/login should return database data 1`] = `
+exports[`mutations/login should issue a token 1`] = `
 Object {
+  "email": "batman@waynecorp.org",
   "id": 3,
   "name": "Bruce Wayne",
 }

@@ -169,17 +169,21 @@ exports[`#schema should set type definitions 1`] = `
     password: String!
   }
 
+  type Token {
+    token: String!
+  }
+
   # The allowed mutations
   type Mutation {
     insertMovie(input: MovieInput!): Movie
     updateRating(input: RatingInput!): Movie
-    login(input: LoginInput!): User
+    login(input: LoginInput!): Token
   }
 
   type Query {
     # Return a feed of all users watches or
     # if provided with an ID only one users feed
-    feed(userId: Int, limit: Int = 50, offset: Int = 0): [MovieWithUser]!
+    feed(limit: Int = 50, offset: Int = 0): [MovieWithUser]!
 
     # Takes an required ID that can be either
     # the ID in the database OR an IMDb ID (i.e. tt0180093)
