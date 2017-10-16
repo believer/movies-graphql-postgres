@@ -8,7 +8,8 @@
     "test": "jest",
     "lint": "eslint ./lib",
     "coverage": "jest --coverage",
-    "migrate": "knex migrate:latest"
+    "migrate": "knex migrate:latest",
+    "dev": "nodemon ./lib/server.js"
   },
   "dependencies": {
     "apollo-server-express": "^1.1.3",
