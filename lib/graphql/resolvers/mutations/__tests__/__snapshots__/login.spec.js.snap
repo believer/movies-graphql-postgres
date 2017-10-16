@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mutations/login should get a specific user 1`] = `"SELECT * FROM users WHERE email = 'batman@waynecorp.org'"`;
+
+exports[`mutations/login should return database data 1`] = `
+Object {
+  "id": 3,
+  "name": "Bruce Wayne",
+}
+`;

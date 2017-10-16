@@ -164,9 +164,15 @@ Array [
     name: String
   }
 
+  input LoginInput {
+    username: String!
+    password: String!
+  }
+
   type Mutation {
     insertMovie(input: MovieInput!): Movie
     updateRating(input: RatingInput!): Movie
+    login(input: LoginInput!): User
   }
 
   type Query {
