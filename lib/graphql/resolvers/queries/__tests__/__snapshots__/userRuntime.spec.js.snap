@@ -2,33 +2,33 @@
 
 exports[`queries/userRuntime should get how many movies a for a specific role 1`] = `
 "
-    SELECT
-      all_views.minutes,
-      all_views.minutes / 60 AS hours,
-      all_views.minutes / (60 * 24) AS days,
-      all_views.minutes / (60 * 24 * 365)::float AS years
-    FROM (
-      SELECT SUM(m.runtime) as minutes
-      FROM views AS v 
-      INNER JOIN movies AS m ON m.id = v.movie_id 
-      WHERE v.user_id = 1
-    ) AS all_views;
-
-    SELECT
-      all_unique_views.minutes,
-      all_unique_views.minutes / 60 AS hours,
-      all_unique_views.minutes / (60 * 24) AS days,
-      all_unique_views.minutes / (60 * 24 * 365)::float AS years
-    FROM (
-      SELECT SUM(unique_views.runtime) as minutes
+      SELECT
+        all_views.minutes,
+        all_views.minutes / 60 AS hours,
+        all_views.minutes / (60 * 24) AS days,
+        all_views.minutes / (60 * 24 * 365)::float AS years
       FROM (
-        SELECT 
-          distinct m.id, 
-          m.runtime 
-        FROM views AS V 
+        SELECT SUM(m.runtime) as minutes
+        FROM views AS v 
         INNER JOIN movies AS m ON m.id = v.movie_id 
-        WHERE v.user_id = 1
-      ) as unique_views
-    ) AS all_unique_views;
-  "
+        WHERE v.user_id = 2
+      ) AS all_views;
+
+      SELECT
+        all_unique_views.minutes,
+        all_unique_views.minutes / 60 AS hours,
+        all_unique_views.minutes / (60 * 24) AS days,
+        all_unique_views.minutes / (60 * 24 * 365)::float AS years
+      FROM (
+        SELECT SUM(unique_views.runtime) as minutes
+        FROM (
+          SELECT 
+            distinct m.id, 
+            m.runtime 
+          FROM views AS V 
+          INNER JOIN movies AS m ON m.id = v.movie_id 
+          WHERE v.user_id = 2
+        ) as unique_views
+      ) AS all_unique_views;
+    "
 `;

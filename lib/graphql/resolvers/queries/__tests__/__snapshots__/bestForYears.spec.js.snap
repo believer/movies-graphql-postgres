@@ -2,18 +2,18 @@
 
 exports[`queries/bestForYears should get the best movies for each year 1`] = `
 "
-    SELECT * FROM (
-      SELECT 
-        m.title,
-        m.release_date,
-        r.rating,
-        row_number() OVER (PARTITION BY date_part('year', release_date) ORDER BY rating DESC) AS ranking
-      FROM 
-        movies AS m 
-        INNER JOIN ratings AS r ON r.movie_id = m.id
-        WHERE r.user_id = 2
-    ) ratings
-    WHERE ratings.ranking = 10 AND ratings.release_date IS NOT NULL
-    ORDER BY release_date DESC
-  "
+      SELECT * FROM (
+        SELECT 
+          m.title,
+          m.release_date,
+          r.rating,
+          row_number() OVER (PARTITION BY date_part('year', release_date) ORDER BY rating DESC) AS ranking
+        FROM 
+          movies AS m 
+          INNER JOIN ratings AS r ON r.movie_id = m.id
+          WHERE r.user_id = 2
+      ) ratings
+      WHERE ratings.ranking = 10 AND ratings.release_date IS NOT NULL
+      ORDER BY release_date DESC
+    "
 `;
