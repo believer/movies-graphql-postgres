@@ -1,4 +1,4 @@
-exports.up = function(knex, Promise) {
+exports.up = function (knex) {
   return knex.schema.createTableIfNotExists('movies', table => {
     table.increments()
     table.string('imdb_id')
@@ -13,6 +13,18 @@ exports.up = function(knex, Promise) {
   })
 }
 
-exports.down = function(knex, Promise) {
-  return knex.schema.dropTableIfExists('movies')
+exports.down = function (knex) {
+  return knex.schema.table('movies', table => {
+    table.dropColumns(
+      'imdb_id',
+      'release_date',
+      'runtime',
+      'synopsis',
+      'tagline',
+      'title',
+      'tmdb_id',
+      'year',
+      'wilhelm'
+    )
+  })
 }

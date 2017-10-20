@@ -1,0 +1,7 @@
+{
+  "jwt": {
+    "secret": "sikrit"
+  },
+  "enviroment": "development",
+  "port": 3000
+}
