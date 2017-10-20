@@ -18,7 +18,7 @@ exports[`queries/totalByPerson should get how many movies actors are in sorted o
             INNER JOIN cast_and_crew AS cac ON cac.movie_id = m.id 
             INNER JOIN people AS p ON cac.person_id = p.id 
           WHERE 
-            v.user_id = 1
+            v.user_id = 2
             AND cac.role_id = 2
           GROUP BY 1
         ) as people
@@ -45,7 +45,7 @@ exports[`queries/totalByPerson should get number of movies for a specific name 1
             INNER JOIN cast_and_crew AS cac ON cac.movie_id = m.id 
             INNER JOIN people AS p ON cac.person_id = p.id 
           WHERE 
-            v.user_id = 1
+            v.user_id = 2
             AND cac.role_id = 2
           GROUP BY 1
         ) as people
