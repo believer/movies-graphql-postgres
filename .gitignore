@@ -8,3 +8,4 @@ json
 rethinkdb*
 *.db
 coverage
+config.json

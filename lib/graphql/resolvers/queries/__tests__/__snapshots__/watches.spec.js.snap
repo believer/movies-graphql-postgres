@@ -2,10 +2,10 @@
 
 exports[`queries/watches should get watch stats for a user 1`] = `
 "
-    SELECT
-      COUNT(distinct v.movie_id) AS total_views,
-      COUNT(*) AS views_with_rewatches
-    FROM views as v 
-    WHERE v.user_id = 1
-  "
+      SELECT
+        COUNT(distinct v.movie_id) AS total_views,
+        COUNT(*) AS views_with_rewatches
+      FROM views as v 
+      WHERE v.user_id = 2
+    "
 `;
