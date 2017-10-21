@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./lib/server.js",
     "test": "jest",
-    "lint": "eslint ./lib",
+    "lint": "eslint .",
     "coverage": "jest --coverage",
     "migrate": "knex migrate:latest",
     "dev": "nodemon ./lib/server.js"

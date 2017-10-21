@@ -1,3 +1,3 @@
 module.exports = {
-  makeExecutableSchema: jest.fn()
+  makeExecutableSchema: jest.fn(),
 }
