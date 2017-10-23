@@ -13,7 +13,6 @@ Object {
   "title": "Blade Runner 2049",
   "tmdb_id": 335984,
   "wilhelm": true,
-  "year": undefined,
 }
 `;
 
@@ -34,7 +33,6 @@ Array [
       "title": "Blade Runner 2049",
       "tmdb_id": 335984,
       "wilhelm": true,
-      "year": undefined,
     },
   ],
 ]

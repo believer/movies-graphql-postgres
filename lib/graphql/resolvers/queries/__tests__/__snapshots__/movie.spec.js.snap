@@ -14,7 +14,8 @@ exports[`queries/movie should one for movie using IMDb id 1`] = `
   g.genres, 
   c.countries, 
   l.languages, 
-  pc.production_companies
+  pc.production_companies,
+  pro.producers
 
     FROM 
       (
@@ -139,6 +140,21 @@ exports[`queries/movie should one for movie using IMDb id 1`] = `
             AND cac.role_id = 4
         ) as composers
     ) as co
+  ,
+  
+    LATERAL (
+      SELECT 
+        ARRAY (
+          SELECT 
+            trim(p.name) 
+          FROM 
+            cast_and_crew AS cac 
+            INNER JOIN people AS p ON p.id = cac.person_id 
+          WHERE 
+            cac.movie_id = m.id 
+            AND cac.role_id = 5
+        ) as producers
+    ) as pro
   
 
   "
@@ -158,7 +174,8 @@ exports[`queries/movie should query for movie using id 1`] = `
   g.genres, 
   c.countries, 
   l.languages, 
-  pc.production_companies
+  pc.production_companies,
+  pro.producers
 
     FROM 
       (
@@ -283,6 +300,21 @@ exports[`queries/movie should query for movie using id 1`] = `
             AND cac.role_id = 4
         ) as composers
     ) as co
+  ,
+  
+    LATERAL (
+      SELECT 
+        ARRAY (
+          SELECT 
+            trim(p.name) 
+          FROM 
+            cast_and_crew AS cac 
+            INNER JOIN people AS p ON p.id = cac.person_id 
+          WHERE 
+            cac.movie_id = m.id 
+            AND cac.role_id = 5
+        ) as producers
+    ) as pro
   
 
   "
