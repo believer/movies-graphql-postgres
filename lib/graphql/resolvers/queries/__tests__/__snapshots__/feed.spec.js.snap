@@ -4,6 +4,8 @@ exports[`queries/feed should query for a specific user 1`] = `
 "
       SELECT 
         distinct on (m.id, v.view_date) m.*, 
+        rate.rating,
+        views.views,
         usr.user,
         
   img.poster, 
@@ -15,11 +17,12 @@ exports[`queries/feed should query for a specific user 1`] = `
   g.genres, 
   c.countries, 
   l.languages, 
-  pc.production_companies
+  pc.production_companies,
+  pro.producers
 
       FROM 
         (
-          SELECT  * 
+          SELECT * 
           FROM views 
           WHERE user_id = 2
           ORDER BY view_date DESC
@@ -27,7 +30,9 @@ exports[`queries/feed should query for a specific user 1`] = `
           LIMIT 10
         ) as v, 
         LATERAL (
-          SELECT * FROM movies WHERE id = v.movie_id
+          SELECT *,
+          EXTRACT(YEAR FROM release_date) as year
+          FROM movies WHERE id = v.movie_id
         ) as m, 
         LATERAL (
           SELECT
@@ -37,6 +42,21 @@ exports[`queries/feed should query for a specific user 1`] = `
               'email', email) as user
           FROM users WHERE id = v.user_id
         ) as usr,
+        LATERAL (
+          SELECT rating
+          FROM ratings
+          WHERE movie_id = v.movie_id
+        ) as rate,
+        LATERAL (
+          SELECT 
+          ARRAY (
+            SELECT view_date 
+            FROM views 
+            WHERE 
+              movie_id = v.movie_id 
+              AND user_id = v.user_id
+          ) as views
+        ) as views, 
         
   LATERAL (
     SELECT * FROM images WHERE movie_id = m.id
@@ -156,6 +176,21 @@ exports[`queries/feed should query for a specific user 1`] = `
             AND cac.role_id = 4
         ) as composers
     ) as co
+  ,
+  
+    LATERAL (
+      SELECT 
+        ARRAY (
+          SELECT 
+            trim(p.name) 
+          FROM 
+            cast_and_crew AS cac 
+            INNER JOIN people AS p ON p.id = cac.person_id 
+          WHERE 
+            cac.movie_id = m.id 
+            AND cac.role_id = 5
+        ) as producers
+    ) as pro
   
 
       ORDER BY 

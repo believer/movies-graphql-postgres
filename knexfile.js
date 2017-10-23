@@ -4,10 +4,10 @@ module.exports = {
     connection: {
       user: 'api',
       database: 'movee',
-      password: 'movies'
+      password: 'movies',
     },
     migrations: {
-      directory: __dirname + '/migrations'
-    }
-  }
+      directory: __dirname + '/migrations',
+    },
+  },
 }

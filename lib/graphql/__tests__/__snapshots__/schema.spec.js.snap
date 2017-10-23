@@ -9,7 +9,7 @@ Object {
 
 exports[`#schema should set type definitions 1`] = `
 "
-  interface MovieInterface {
+  type Movie {
     actors: [String]
     backdrop: String
     countries: [String]
@@ -21,62 +21,17 @@ exports[`#schema should set type definitions 1`] = `
     composers: [String]
     title: String
     production_companies: [String]
+    producers: [String]
     poster: String
     release_date: String
     synopsis: String
-    runtime: Int
-    tagline: String
-    title: String
-    tmdb_id: String
-    wilhelm: Boolean
-    writers: [String]
-    year: String
-  }
-
-  type Movie implements MovieInterface {
-    actors: [String]
-    backdrop: String
-    countries: [String]
-    directors: [String]
-    genres: [String]
-    id: String
-    imdb_id: String
-    languages: [String]
-    composers: [String]
-    title: String
-    production_companies: [String]
-    poster: String
-    release_date: String
-    synopsis: String
-    runtime: Int
-    tagline: String
-    title: String
-    tmdb_id: String
-    wilhelm: Boolean
-    writers: [String]
-    year: String
-  }
-
-  type MovieWithUser implements MovieInterface {
-    actors: [String]
-    backdrop: String
-    countries: [String]
-    directors: [String]
-    genres: [String]
-    id: String
-    imdb_id: String
-    languages: [String]
-    composers: [String]
-    title: String
-    production_companies: [String]
-    poster: String
-    release_date: String
-    synopsis: String
+    rating: Int
     runtime: Int
     tagline: String
     title: String
     tmdb_id: String
     user: User
+    views: [String]
     wilhelm: Boolean
     writers: [String]
     year: String
@@ -181,7 +136,7 @@ exports[`#schema should set type definitions 1`] = `
   type Query {
     # Return a feed of all users watches or
     # if provided with an ID only one users feed
-    feed(limit: Int = 50, offset: Int = 0): [MovieWithUser]!
+    feed(limit: Int = 50, offset: Int = 0): [Movie]!
 
     # Takes an required ID that can be either
     # the ID in the database OR an IMDb ID (i.e. tt0180093)

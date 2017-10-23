@@ -1,37 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`mutations/insertMovie should create a column set for the movie 1`] = `
+exports[`mutations/insertMovie should insert a movie 1`] = `
+Object {
+  "adult": false,
+  "budget": 150000000,
+  "homepage": "http://bladerunnermovie.com/",
+  "imdb_id": "tt1856101",
+  "overview": "Thirty years after the events of the first film, a new blade runner, LAPD Officer K, unearths a long-buried secret that has the potential to plunge what's left of society into chaos. K's discovery leads him on a quest to find Rick Deckard, a former LAPD blade runner who has been missing for 30 years.",
+  "release_date": "2017-10-04",
+  "runtime": 163,
+  "tagline": "",
+  "title": "Blade Runner 2049",
+  "tmdb_id": 335984,
+  "wilhelm": true,
+}
+`;
+
+exports[`mutations/insertMovie should insert a movie 2`] = `
 Array [
+  "? ON CONFLICT ON CONSTRAINT movies_imdb_id_key
+      DO UPDATE SET imdb_id='tt1856101' RETURNING *",
   Array [
-    "imdb_id",
-    "release_date",
-    "runtime",
-    "synopsis",
-    "tagline",
-    "title",
-    "tmdb_id",
-    "year",
-    "wilhelm",
+    Object {
+      "adult": false,
+      "budget": 150000000,
+      "homepage": "http://bladerunnermovie.com/",
+      "imdb_id": "tt1856101",
+      "overview": "Thirty years after the events of the first film, a new blade runner, LAPD Officer K, unearths a long-buried secret that has the potential to plunge what's left of society into chaos. K's discovery leads him on a quest to find Rick Deckard, a former LAPD blade runner who has been missing for 30 years.",
+      "release_date": "2017-10-04",
+      "runtime": 163,
+      "tagline": "",
+      "title": "Blade Runner 2049",
+      "tmdb_id": 335984,
+      "wilhelm": true,
+    },
   ],
-  Object {
-    "table": "movies",
-  },
 ]
 `;
 
-exports[`mutations/insertMovie should create an insert statement 1`] = `
-Array [
-  Object {
-    "imdb_id": "tt0137523",
-    "release_date": "1999-10-12",
-    "runtime": 139,
-    "synopsis": "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground fight clubs forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.",
-    "tagline": "How much can you know about yourself if you've never been in a fight?",
-    "title": "Fight Club",
-    "tmdb_id": "550",
-    "wilhelm": true,
-    "year": "1999",
-  },
-  "columns",
-]
+exports[`mutations/insertMovie should return the inserted movie 1`] = `
+Object {
+  "id": "1337",
+}
 `;

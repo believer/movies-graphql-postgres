@@ -1,4 +1,4 @@
-exports.up = (knex, Promise) => {
+exports.up = knex => {
   return knex.schema.createTableIfNotExists('users', table => {
     table.increments()
     table.string('email').notNullable()
@@ -12,6 +12,6 @@ exports.up = (knex, Promise) => {
   })
 }
 
-exports.down = (knex, Promise) => {
+exports.down = knex => {
   return knex.schema.dropTableIfExists('users')
 }

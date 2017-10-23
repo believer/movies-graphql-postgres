@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`#getCrew should sort crew members correctly 1`] = `
+exports[`utils/helpers #getCrew should sort crew members correctly 1`] = `
 Object {
   "director": Array [
     "Darren Aronofsky",
@@ -9,6 +9,7 @@ Object {
     "Clint Mansell",
     "Clint Mansell",
   ],
+  "producer": Array [],
   "writer": Array [
     "Hubert Selby Jr.",
     "Hubert Selby Jr.",
@@ -17,7 +18,7 @@ Object {
 }
 `;
 
-exports[`#movieLaterals should return a big join for movies 1`] = `
+exports[`utils/helpers #movieLaterals should return a big join for movies 1`] = `
 "
   LATERAL (
     SELECT * FROM images WHERE movie_id = m.id
@@ -137,11 +138,26 @@ exports[`#movieLaterals should return a big join for movies 1`] = `
             AND cac.role_id = 4
         ) as composers
     ) as co
+  ,
+  
+    LATERAL (
+      SELECT 
+        ARRAY (
+          SELECT 
+            trim(p.name) 
+          FROM 
+            cast_and_crew AS cac 
+            INNER JOIN people AS p ON p.id = cac.person_id 
+          WHERE 
+            cac.movie_id = m.id 
+            AND cac.role_id = 5
+        ) as producers
+    ) as pro
   
 "
 `;
 
-exports[`#movieSelects should return common select for movies 1`] = `
+exports[`utils/helpers #movieSelects should return common select for movies 1`] = `
 "
   img.poster, 
   img.backdrop,
@@ -152,6 +168,7 @@ exports[`#movieSelects should return common select for movies 1`] = `
   g.genres, 
   c.countries, 
   l.languages, 
-  pc.production_companies
+  pc.production_companies,
+  pro.producers
 "
 `;
