@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`#getCrew should sort crew members correctly 1`] = `
+exports[`utils/helpers #getCrew should sort crew members correctly 1`] = `
 Object {
   "director": Array [
     "Darren Aronofsky",
@@ -18,7 +18,7 @@ Object {
 }
 `;
 
-exports[`#movieLaterals should return a big join for movies 1`] = `
+exports[`utils/helpers #movieLaterals should return a big join for movies 1`] = `
 "
   LATERAL (
     SELECT * FROM images WHERE movie_id = m.id
@@ -157,7 +157,7 @@ exports[`#movieLaterals should return a big join for movies 1`] = `
 "
 `;
 
-exports[`#movieSelects should return common select for movies 1`] = `
+exports[`utils/helpers #movieSelects should return common select for movies 1`] = `
 "
   img.poster, 
   img.backdrop,
