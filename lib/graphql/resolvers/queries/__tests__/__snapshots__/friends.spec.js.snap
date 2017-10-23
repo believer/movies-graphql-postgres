@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`queries/friends should get the best movies for each year 1`] = `
+"
+      SELECT 
+        u.id,
+        u.name,
+        u.email
+      FROM 
+        friends AS f 
+      INNER JOIN users AS u ON u.id = f.friend_id
+      WHERE 
+        user_id = 2 
+    "
+`;
