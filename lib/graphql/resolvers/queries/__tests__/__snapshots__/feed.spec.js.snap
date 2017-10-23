@@ -20,11 +20,23 @@ exports[`queries/feed should query for a specific user 1`] = `
   pc.production_companies,
   pro.producers
 
-      FROM 
+      FROM
         (
+          SELECT 
+          ARRAY (
+            SELECT 
+              u.id 
+            FROM 
+              friends AS f 
+              INNER JOIN users AS u ON u.id = f.friend_id 
+            WHERE 
+              user_id = 2
+          ) as friends_ids
+        ) as friends, 
+        LATERAL (
           SELECT * 
           FROM views 
-          WHERE user_id = 2
+          WHERE user_id = 2 OR user_id = ANY(friends.friends_ids)
           ORDER BY view_date DESC
           OFFSET 0 
           LIMIT 10
@@ -50,7 +62,7 @@ exports[`queries/feed should query for a specific user 1`] = `
         LATERAL (
           SELECT 
           ARRAY (
-            SELECT view_date 
+            SELECT to_char(view_date, 'YYYY-MM-DD HH24:MI:SS')
             FROM views 
             WHERE 
               movie_id = v.movie_id 
