@@ -169,11 +169,18 @@ exports[`#schema should set type definitions 1`] = `
     password: String!
   }
 
+  input RegisterInput {
+    email: String!
+    name: String!
+    password: String!
+  }
+
   # The allowed mutations
   type Mutation {
     insertMovie(input: MovieInput!): Movie
     updateRating(input: RatingInput!): Movie
     login(input: LoginInput!): User
+    register(input: RegisterInput!): User
   }
 
   type Query {
