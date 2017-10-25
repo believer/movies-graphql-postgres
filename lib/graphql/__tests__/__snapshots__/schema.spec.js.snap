@@ -9,7 +9,7 @@ Object {
 
 exports[`#schema should set type definitions 1`] = `
 "
-  type Movie {
+  type Movie @cacheControl(maxAge: 1800) {
     actors: [String]
     backdrop: String
     countries: [String]
@@ -25,13 +25,16 @@ exports[`#schema should set type definitions 1`] = `
     producers: [String]
     poster: String
     release_date: String
+    # Users rating of the movie
     rating: Int
     runtime: Int
     tagline: String
     title: String
     tmdb_id: String
     user: User
+    # How many times the user has watched the movie
     views: [String]
+    # Does the movie contain the Wilhelm scream?
     wilhelm: Boolean
     writers: [String]
     year: String
@@ -73,45 +76,40 @@ exports[`#schema should set type definitions 1`] = `
     wilhelm: Boolean = false
   }
 
-  type UpdatedRating {
-    movie_id: Int
-    rating: Int
-  }
-
-  type CountWithYear {
+  type CountWithYear @cacheControl(maxAge: 1800) {
     count: Int
     year: String
   }
 
-  type PersonInMovies {
+  type PersonInMovies @cacheControl(maxAge: 1800) {
     name: String
     number_of_movies: Int
     ranking: Int
   }
 
-  type Watches {
+  type Watches @cacheControl(maxAge: 1800) {
     views_with_rewatches: Int
     total_views: Int
   }
 
-  type Runtime {
+  type Runtime @cacheControl(maxAge: 1800) {
     days: Int
     minutes: Int
     hours: Int
     years: Float
   }
 
-  type RuntimeWithAdjusted {
+  type RuntimeWithAdjusted @cacheControl(maxAge: 1800) {
     total_with_rewatches: Runtime
     total: Runtime
   }
 
-  type Ratings {
+  type Ratings @cacheControl(maxAge: 1800) {
     rating: Int
     user: User
   }
 
-  type User {
+  type User @cacheControl(maxAge: 86400) {
     email: String
     id: Int
     name: String
