@@ -2,205 +2,74 @@
 
 exports[`queries/feed should query for a specific user 1`] = `
 "
-    SELECT 
-      distinct on (m.id, v.view_date) m.*, 
-      usr.user,
-      
-  img.poster, 
-  img.backdrop,
-  a.actors, 
-  d.directors,
-  co.composers, 
-  w.writers,
-  g.genres, 
-  c.countries, 
-  l.languages, 
-  pc.production_companies
-
-    FROM 
-      (
-        SELECT  * 
-        FROM views 
-        WHERE user_id = 2
-        ORDER BY view_date DESC
-        OFFSET 0 
-        LIMIT 10
-      ) as v, 
-      LATERAL (
-        SELECT * FROM movies WHERE id = v.movie_id
-      ) as m, 
-      LATERAL (
-        SELECT
-          jsonb_build_object(
-            'id', id,
-            'name', name,
-            'email', email) as user
-        FROM users WHERE id = v.user_id
-      ) as usr,
-      
-  LATERAL (
-    SELECT * FROM images WHERE movie_id = m.id
-  ) as img,
-  
-    LATERAL (
       SELECT 
-        ARRAY (
-          SELECT 
-            trim(p.name)
-          FROM 
-            movie_genres AS comb 
-            INNER JOIN genres AS p ON p.id = comb.genre_id
-          WHERE 
-            comb.movie_id = m.id
-        ) as genres
-    ) as g 
-  ,
-  
-    LATERAL (
-      SELECT 
-        ARRAY (
-          SELECT 
-            trim(p.name)
-          FROM 
-            movie_countries AS comb 
-            INNER JOIN countries AS p ON p.id = comb.country_id
-          WHERE 
-            comb.movie_id = m.id
-        ) as countries
-    ) as c 
-  ,
-  
-    LATERAL (
-      SELECT 
-        ARRAY (
-          SELECT 
-            trim(p.name)
-          FROM 
-            movie_languages AS comb 
-            INNER JOIN languages AS p ON p.id = comb.language_id
-          WHERE 
-            comb.movie_id = m.id
-        ) as languages
-    ) as l 
-  ,
-  
-    LATERAL (
-      SELECT 
-        ARRAY (
-          SELECT 
-            trim(p.name)
-          FROM 
-            movie_production_companies AS comb 
-            INNER JOIN production_companies AS p ON p.id = comb.production_company_id
-          WHERE 
-            comb.movie_id = m.id
-        ) as production_companies
-    ) as pc 
-  ,
-  
-    LATERAL (
-      SELECT 
-        ARRAY (
-          SELECT 
-            trim(p.name) 
-          FROM 
-            cast_and_crew AS cac 
-            INNER JOIN people AS p ON p.id = cac.person_id 
-          WHERE 
-            cac.movie_id = m.id 
-            AND cac.role_id = 1
-        ) as directors
-    ) as d
-  ,
-  
-    LATERAL (
-      SELECT 
-        ARRAY (
-          SELECT 
-            trim(p.name) 
-          FROM 
-            cast_and_crew AS cac 
-            INNER JOIN people AS p ON p.id = cac.person_id 
-          WHERE 
-            cac.movie_id = m.id 
-            AND cac.role_id = 2
-        ) as actors
-    ) as a
-  ,
-  
-    LATERAL (
-      SELECT 
-        ARRAY (
-          SELECT 
-            trim(p.name) 
-          FROM 
-            cast_and_crew AS cac 
-            INNER JOIN people AS p ON p.id = cac.person_id 
-          WHERE 
-            cac.movie_id = m.id 
-            AND cac.role_id = 3
-        ) as writers
-    ) as w
-  ,
-  
-    LATERAL (
-      SELECT 
-        ARRAY (
-          SELECT 
-            trim(p.name) 
-          FROM 
-            cast_and_crew AS cac 
-            INNER JOIN people AS p ON p.id = cac.person_id 
-          WHERE 
-            cac.movie_id = m.id 
-            AND cac.role_id = 4
-        ) as composers
-    ) as co
-  
-
-    ORDER BY 
-      v.view_date DESC
-  "
-`;
-
-exports[`queries/feed should query for all users 1`] = `
-"
-    SELECT 
-      distinct on (m.id, v.view_date) m.*, 
-      usr.user,
-      
-  img.poster, 
-  img.backdrop,
-  a.actors, 
-  d.directors,
-  co.composers, 
-  w.writers,
-  g.genres, 
-  c.countries, 
-  l.languages, 
-  pc.production_companies
-
-    FROM 
-      (
-        SELECT  * 
-        FROM views 
+        distinct on (m.id, v.view_date) m.*, 
+        rate.rating,
+        views.views,
+        usr.user,
         
-        ORDER BY view_date DESC
-        OFFSET 0 
-        LIMIT 10
-      ) as v, 
-      LATERAL (
-        SELECT * FROM movies WHERE id = v.movie_id
-      ) as m, 
-      LATERAL (
-        SELECT
-          jsonb_build_object(
-            'id', id,
-            'name', name,
-            'email', email) as user
-        FROM users WHERE id = v.user_id
-      ) as usr,
-      
+  img.poster, 
+  img.backdrop,
+  a.actors, 
+  d.directors,
+  co.composers, 
+  w.writers,
+  g.genres, 
+  c.countries, 
+  l.languages, 
+  pc.production_companies,
+  pro.producers
+
+      FROM
+        (
+          SELECT 
+          ARRAY (
+            SELECT 
+              u.id 
+            FROM 
+              friends AS f 
+              INNER JOIN users AS u ON u.id = f.friend_id 
+            WHERE 
+              user_id = 2
+          ) as friends_ids
+        ) as friends, 
+        LATERAL (
+          SELECT * 
+          FROM views 
+          WHERE user_id = 2 OR user_id = ANY(friends.friends_ids)
+          ORDER BY view_date DESC
+          OFFSET 0 
+          LIMIT 10
+        ) as v, 
+        LATERAL (
+          SELECT *,
+          EXTRACT(YEAR FROM release_date) as year
+          FROM movies WHERE id = v.movie_id
+        ) as m, 
+        LATERAL (
+          SELECT
+            jsonb_build_object(
+              'id', id,
+              'name', name,
+              'email', email) as user
+          FROM users WHERE id = v.user_id
+        ) as usr,
+        LATERAL (
+          SELECT rating
+          FROM ratings
+          WHERE movie_id = v.movie_id
+        ) as rate,
+        LATERAL (
+          SELECT 
+          ARRAY (
+            SELECT to_char(view_date, 'YYYY-MM-DD HH24:MI:SS')
+            FROM views 
+            WHERE 
+              movie_id = v.movie_id 
+              AND user_id = v.user_id
+          ) as views
+        ) as views, 
+        
   LATERAL (
     SELECT * FROM images WHERE movie_id = m.id
   ) as img,
@@ -319,9 +188,24 @@ exports[`queries/feed should query for all users 1`] = `
             AND cac.role_id = 4
         ) as composers
     ) as co
+  ,
+  
+    LATERAL (
+      SELECT 
+        ARRAY (
+          SELECT 
+            trim(p.name) 
+          FROM 
+            cast_and_crew AS cac 
+            INNER JOIN people AS p ON p.id = cac.person_id 
+          WHERE 
+            cac.movie_id = m.id 
+            AND cac.role_id = 5
+        ) as producers
+    ) as pro
   
 
-    ORDER BY 
-      v.view_date DESC
-  "
+      ORDER BY 
+        v.view_date DESC
+    "
 `;

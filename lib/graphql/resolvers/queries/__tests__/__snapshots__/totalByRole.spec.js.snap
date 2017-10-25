@@ -2,13 +2,13 @@
 
 exports[`queries/totalByRole should get how many movies a for a specific role 1`] = `
 "
-    SELECT
-      COUNT(distinct p.name)
-    FROM 
-      views AS v
-      INNER JOIN movies AS m ON m.id = v.movie_id
-      INNER JOIN cast_and_crew AS cac ON cac.movie_id = m.id
-      INNER JOIN people AS p ON cac.person_id = p.id
-    WHERE v.user_id = 1 AND cac.role_id = 1
-  "
+      SELECT
+        COUNT(distinct p.name)
+      FROM 
+        views AS v
+        INNER JOIN movies AS m ON m.id = v.movie_id
+        INNER JOIN cast_and_crew AS cac ON cac.movie_id = m.id
+        INNER JOIN people AS p ON cac.person_id = p.id
+      WHERE v.user_id = 2 AND cac.role_id = 1
+    "
 `;
