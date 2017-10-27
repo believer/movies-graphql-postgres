@@ -120,6 +120,12 @@ exports[`#schema should set type definitions 1`] = `
     password: String!
   }
 
+  input RegisterInput {
+    email: String!
+    name: String!
+    password: String!
+  }
+
   type Token {
     token: String!
   }
@@ -128,6 +134,7 @@ exports[`#schema should set type definitions 1`] = `
   type Mutation {
     insertMovie(input: MovieInput!): Movie
     updateRating(input: RatingInput!): Movie
+    register(input: RegisterInput!): User
     login(input: LoginInput!): Token
   }
 
