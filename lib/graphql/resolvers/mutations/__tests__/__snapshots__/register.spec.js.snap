@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mutations/register calls db to check if user exists 1`] = `"SELECT * FROM users WHERE email = 'batman@waynecorp.org'"`;
+
+exports[`mutations/register calls db to insert new user 1`] = `
+"
+      INSERT INTO users (password, name, email, salt)
+      VALUES ('hashpasword', 'Batman', 'batman@waynecorp.org', 'thisissalt')
+    "
+`;
