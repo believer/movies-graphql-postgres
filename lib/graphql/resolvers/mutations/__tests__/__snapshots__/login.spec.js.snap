@@ -9,3 +9,7 @@ Object {
   "name": "Bruce Wayne",
 }
 `;
+
+exports[`mutations/login should should lowercase username 1`] = `"SELECT * FROM users WHERE email = 'matman@waynecorp.org'"`;
+
+exports[`mutations/login should should trim username 1`] = `"SELECT * FROM users WHERE email = 'batman@waynecorp.org'"`;
