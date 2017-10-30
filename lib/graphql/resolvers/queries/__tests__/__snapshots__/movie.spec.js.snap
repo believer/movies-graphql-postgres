@@ -3,7 +3,7 @@
 exports[`queries/movie should one for movie using IMDb id 1`] = `
 "
     SELECT 
-      m.*, 
+      distinct on (m.id) m.*, 
       
   img.poster, 
   img.backdrop,
@@ -163,7 +163,7 @@ exports[`queries/movie should one for movie using IMDb id 1`] = `
 exports[`queries/movie should query for movie using id 1`] = `
 "
     SELECT 
-      m.*, 
+      distinct on (m.id) m.*, 
       
   img.poster, 
   img.backdrop,
