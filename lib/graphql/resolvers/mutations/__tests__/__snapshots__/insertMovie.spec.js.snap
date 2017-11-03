@@ -38,6 +38,15 @@ Array [
 ]
 `;
 
+exports[`mutations/insertMovie should insert a rating if rating is set 1`] = `
+"
+        INSERT INTO ratings (movie_id, user_id, rating)
+        VALUES ($1, $2, $3)
+        ON CONFLICT
+        ON CONSTRAINT ratings_pkey DO UPDATE SET rating=EXCLUDED.rating
+      "
+`;
+
 exports[`mutations/insertMovie should return the inserted movie 1`] = `
 Object {
   "id": "1337",
