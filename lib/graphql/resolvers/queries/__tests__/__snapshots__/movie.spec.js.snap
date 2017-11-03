@@ -19,7 +19,9 @@ exports[`queries/movie should one for movie using IMDb id 1`] = `
 
     FROM 
       (
-        SELECT * FROM movies WHERE imdb_id = $1
+        SELECT *,
+        EXTRACT(YEAR FROM release_date) as year
+        FROM movies WHERE imdb_id = $1
       ) as m, 
       
   LATERAL (
@@ -179,7 +181,9 @@ exports[`queries/movie should query for movie using id 1`] = `
 
     FROM 
       (
-        SELECT * FROM movies WHERE id = $1
+        SELECT *,
+        EXTRACT(YEAR FROM release_date) as year
+        FROM movies WHERE id = $1
       ) as m, 
       
   LATERAL (
