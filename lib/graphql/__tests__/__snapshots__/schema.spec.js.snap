@@ -131,6 +131,23 @@ exports[`#schema should set type definitions 1`] = `
     token: String!
   }
 
+  type ToplistMovie {
+    average_rating: Float
+    number_of_ratings: Int
+    id: String
+    imdb_id: String
+    title: String
+    overview: String
+    release_date: String
+    runtime: Int
+    tagline: String
+    title: String
+    tmdb_id: String
+    # Does the movie contain the Wilhelm scream?
+    wilhelm: Boolean
+    year: String
+  }
+
   # The allowed mutations
   type Mutation {
     insertMovie(input: MovieInput!): Movie
@@ -153,6 +170,9 @@ exports[`#schema should set type definitions 1`] = `
     moviesPerYear(year: String): [CountWithYear]
     moviesWithRating(rating: Int!): [Movie]
     person(name: String!, role: PersonType!): [Movie]
+    
+    # Our version of the IMDb Top 250
+    top250(limit: Int = 250, offset: Int = 0): [ToplistMovie]
 
     # All users ratings for a specific movie
     ratings(movieId: Int!): [Ratings]!

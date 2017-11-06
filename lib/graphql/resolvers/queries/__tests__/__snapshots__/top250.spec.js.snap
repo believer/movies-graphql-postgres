@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`queries/top250 should query for top250 1`] = `
+"
+    SELECT 
+      avg(r.rating) as average_rating, 
+      count(r.rating) as number_of_ratings, 
+      m.*,
+      EXTRACT(YEAR FROM m.release_date) as year
+    FROM ratings AS r 
+    INNER JOIN movies AS m ON m.id = r.movie_id 
+    GROUP BY m.id 
+    ORDER BY
+      number_of_ratings DESC,
+      average_rating DESC,
+      title ASC
+    OFFSET 0
+    LIMIT 200
+  "
+`;
